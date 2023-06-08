@@ -1,7 +1,7 @@
 ﻿namespace BankStatCore.Models
 {
     //Выходная модель, содержащая историю операций
-    public class DescResponse
+    public class DescResponseModel
     {
         //Общее количество найденных элементов
         public int TotalRowCount { get; set; }
@@ -18,6 +18,6 @@
         //Максимальное значение даты для фильтра в формате yyyy-MM-dd’T’HH:mm:ss
         public DateTime DateTo { get; set; }
         //Операции
-        public List<OperationModel> Items { get; set; }
+        public List<OperationModel> Operations { get; set; }
     }
 }

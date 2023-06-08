@@ -5,8 +5,9 @@
         //ID операции
         public string Id { get; set; }
         //Наименование получателя
-        public string Title { get; set; }
-        //
+        public string AccountID { get; set; }
+        //Модель получателя
+        public AccountModel Account { get; set; }
         public AmountModel Amount { get; set; }
         //Дата операции
         public DateTime Date { get; set; }

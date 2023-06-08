@@ -2,11 +2,15 @@
 {
     public class ProductInfoModel
     {
+        public string Id { get; set; }
         //Имя продукта
-        public string Title { get; set; }
-        //Номер счета или номер карты с маской
-        public string Number { get; set; }
-        //
+        public string ProductId { get; set; }
+        //Модель продукта
+        public ProductModel Product { get; set; }
+        //Номер счета
+        public string AccountId { get; set; }
+        //Модель счета
+        public AccountModel Account { get; set; }
         public AmountModel Amount { get; set; }
     }
 }
