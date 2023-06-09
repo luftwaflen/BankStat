@@ -1,4 +1,5 @@
 
+using System.Reflection;
 using BankStatCore.Contracts.Repositories;
 using BankStatInfrastructure.EF;
 using BankStatInfrastructure.Repositories;
@@ -18,7 +19,7 @@ namespace BankStatApi
             builder.Services.AddDbContext<BankContext>(options =>
                 options.UseSqlite(connection)
             );
-
+            
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IOperationRepository, OperationRepository>();
