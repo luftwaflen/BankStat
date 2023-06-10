@@ -23,12 +23,12 @@ namespace BankStatInfrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public OperationModel GetById(int id)
+        public OperationModel GetById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<OperationModel> GetByIdAsync(int id)
+        public async Task<OperationModel> GetByIdAsync(string id)
         {
             throw new NotImplementedException();
         }
@@ -63,12 +63,12 @@ namespace BankStatInfrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        public void DeleteById(int id)
+        public void DeleteById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteByIdAsync(int id)
+        public void DeleteByIdAsync(string id)
         {
             throw new NotImplementedException();
         }
