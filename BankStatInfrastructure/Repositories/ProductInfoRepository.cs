@@ -4,73 +4,17 @@ using BankStatInfrastructure.EF;
 
 namespace BankStatInfrastructure.Repositories
 {
-    public class ProductInfoRepository : IProductInfoRepository
+    public class ProductInfoRepository : BaseRepository<ProductInfoModel>, IProductInfoRepository
     {
-        private readonly BankContext _db;
-
         public ProductInfoRepository(BankContext db)
+            : base(db)
         {
-            _db = db;
         }
 
-        public IEnumerable<ProductInfoModel> GetAll()
+        public override IEnumerable<ProductInfoModel> GetAll()
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<ProductInfoModel>> GetAllAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public ProductInfoModel GetById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ProductInfoModel> GetByIdAsync(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Create(ProductInfoModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ProductInfoModel> CreateAsync(ProductInfoModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(ProductInfoModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<ProductInfoModel> UpdateAsync(ProductInfoModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(ProductInfoModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task DeleteAsync(ProductInfoModel model)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteById(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteByIdAsync(string id)
-        {
-            throw new NotImplementedException();
+            var productInfos = _db.ProductInfos.ToList();
+            return productInfos;
         }
     }
 }
