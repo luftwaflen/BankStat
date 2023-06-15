@@ -6,6 +6,7 @@ namespace BankStatInfrastructure.Repositories
 {
     public class OperationRepository : BaseRepository<OperationModel>, IOperationRepository
     {
+        
         public OperationRepository(BankContext db)
             : base(db)
         {
@@ -13,8 +14,7 @@ namespace BankStatInfrastructure.Repositories
 
         public override IEnumerable<OperationModel> GetAll()
         {
-            var operations = _db.Operations.ToList();
-            return operations;
+            throw new NotImplementedException();
         }
     }
 }

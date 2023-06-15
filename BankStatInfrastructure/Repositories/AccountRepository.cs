@@ -13,8 +13,7 @@ namespace BankStatInfrastructure.Repositories
 
         public override IEnumerable<AccountModel> GetAll()
         {
-            var accounts = _db.Accounts.ToList();
-            return accounts;
+            throw new NotImplementedException();
         }
     }
 }

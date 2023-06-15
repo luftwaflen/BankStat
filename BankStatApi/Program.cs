@@ -1,5 +1,3 @@
-
-using System.Reflection;
 using BankStatCore.Contracts.Repositories;
 using BankStatInfrastructure.EF;
 using BankStatInfrastructure.Repositories;
@@ -24,7 +22,6 @@ namespace BankStatApi
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<IOperationRepository, OperationRepository>();
             builder.Services.AddScoped<IProductInfoRepository, ProductInfoRepository>();
-            builder.Services.AddScoped<IAmountRepository, AmountRepository>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
