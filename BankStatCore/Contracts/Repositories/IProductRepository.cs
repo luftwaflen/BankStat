@@ -1,8 +1,7 @@
 ﻿using BankStatCore.Models;
 
-namespace BankStatCore.Contracts.Repositories
+namespace BankStatCore.Contracts.Repositories;
+
+public interface IProductRepository : IRepository<ProductModel>
 {
-    public interface IProductRepository : IRepository<ProductModel>
-    {
-    }
 }

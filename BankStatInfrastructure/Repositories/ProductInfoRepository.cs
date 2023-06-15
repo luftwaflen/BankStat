@@ -13,8 +13,7 @@ namespace BankStatInfrastructure.Repositories
 
         public override IEnumerable<ProductInfoModel> GetAll()
         {
-            var productInfos = _db.ProductInfos.ToList();
-            return productInfos;
+            throw new NotImplementedException();
         }
     }
 }
