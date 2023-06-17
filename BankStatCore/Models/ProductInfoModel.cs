@@ -2,7 +2,6 @@
 
 public class ProductInfoModel
 {
-    public string Id { get; set; }
     //Продукт
     public ProductModel Product { get; set; }
     //Счет
