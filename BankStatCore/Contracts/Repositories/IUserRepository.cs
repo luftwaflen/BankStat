@@ -2,6 +2,7 @@
 
 namespace BankStatCore.Contracts.Repositories;
 
-public interface IProductInfoRepository : IRepository<ProductInfoModel>
+public interface IUserRepository : IRepository<UserModel>
 {
+    
 }
