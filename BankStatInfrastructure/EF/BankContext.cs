@@ -24,7 +24,7 @@ public class BankContext : DbContext
         modelBuilder.Entity<CurrencyEntity>().Property(e => e.Id).ValueGeneratedOnAdd();
         modelBuilder.Entity<OperationEntity>().Property(e => e.Id).ValueGeneratedOnAdd();
         modelBuilder.Entity<ProductEntity>().Property(e => e.Id).ValueGeneratedOnAdd();
-        
+
         modelBuilder.Entity<ProductEntity>()
             .OwnsOne(e => e.ProductInfo);
         modelBuilder.Entity<AccountEntity>()

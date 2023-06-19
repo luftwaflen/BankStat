@@ -4,14 +4,41 @@ using BankStatInfrastructure.EF;
 
 namespace BankStatInfrastructure.Repositories
 {
-    public class ProductRepository : BaseRepository<ProductModel>, IProductRepository
+    public class ProductRepository : IProductRepository
     {
+        private readonly BankContext _db;
+
         public ProductRepository(BankContext db)
-            : base(db)
         {
+            _db = db;
         }
 
-        public override IEnumerable<ProductModel> GetAll()
+        public IEnumerable<ProductModel> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public ProductModel GetById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Create(ProductModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(ProductModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Delete(ProductModel model)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DeleteById(string id)
         {
             throw new NotImplementedException();
         }
