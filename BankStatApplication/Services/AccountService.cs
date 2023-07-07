@@ -7,41 +7,46 @@ namespace BankStatApplication.Services;
 public class AccountService : IAccountService
 {
     private readonly IAccountRepository _accountRepository;
+    private readonly IOperationService _operationService;
+    private readonly ICurrencyRepository _currencyRepository;
 
-    public AccountService(IAccountRepository accountRepository)
+    private readonly Dictionary<string, Action<AccountModel, AccountModel, decimal, CurrencyModel>>
+        _operationsDictionary;
+
+    public AccountService(
+        IAccountRepository accountRepository,
+        ICurrencyRepository currencyRepository,
+        IOperationService operationService
+    )
     {
         _accountRepository = accountRepository;
+        _currencyRepository = currencyRepository;
+        _operationService = operationService;
+        _operationsDictionary = new Dictionary<string, Action<AccountModel, AccountModel, decimal, CurrencyModel>>
+        {
+            { "deposit", _operationService.Deposit },
+            { "withdraw", _operationService.Withdraw }
+        };
     }
 
-    public IEnumerable<AccountModel> GetAll()
+    public AccountModel Info(string id)
     {
-        var accounts = _accountRepository.GetAll();
-        return accounts;
+        return _accountRepository.GetById(id);
     }
 
-    public AccountModel GetById(string id)
+    public IEnumerable<OperationModel> OperationsHistory(string accountId)
     {
-        var account = _accountRepository.GetById(id);
-        return account;
+        return _operationService.OperationsHistory(accountId);
     }
 
-    public void Create(AccountModel model)
+    public void ExecuteOperation(string senderId, string receiverId, decimal amount, string curIso,
+        string type)
     {
-        _accountRepository.Create(model);
-    }
+        var sender = _accountRepository.GetById(senderId);
+        var receiver = _accountRepository.GetById(receiverId);
+        var currency = _currencyRepository.GetByIso(curIso);
 
-    public void Update(AccountModel model)
-    {
-        _accountRepository.Update(model);
-    }
-
-    public void Delete(AccountModel model)
-    {
-        _accountRepository.Delete(model);
-    }
-
-    public void DeleteById(string id)
-    {
-        _accountRepository.DeleteById(id);
+        var operation = _operationsDictionary[type];
+        operation.Invoke(sender, receiver, amount, currency);
     }
 }

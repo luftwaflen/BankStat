@@ -1,11 +1,11 @@
 ﻿namespace BankStatCore.Contracts.Repositories;
 
-public interface IRepository<T>
+public interface IRepository<TModel>
 {
-    public IEnumerable<T> GetAll();
-    public T GetById(string id);
-    public void Create(T model);
-    public void Update(T model);
-    public void Delete(T model);
-    public void DeleteById(string id);
+    IEnumerable<TModel> GetAll();
+    TModel GetById(string id);
+    void Create(TModel model);
+    void Update(TModel model);
+    void Delete(TModel model);
+    void DeleteById(string id);
 }

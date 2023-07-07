@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankStatApi", "BankStatApi\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankStatApplication", "BankStatApplication\BankStatApplication.csproj", "{594146AC-A97A-4F1D-9036-517C5DBD1141}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BankStatAlphaBankIntegration", "BankStatAlphaBankIntegration\BankStatAlphaBankIntegration.csproj", "{785E5384-8848-401C-8DC0-69BB4BF3C8D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{594146AC-A97A-4F1D-9036-517C5DBD1141}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{594146AC-A97A-4F1D-9036-517C5DBD1141}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{594146AC-A97A-4F1D-9036-517C5DBD1141}.Release|Any CPU.Build.0 = Release|Any CPU
+		{785E5384-8848-401C-8DC0-69BB4BF3C8D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785E5384-8848-401C-8DC0-69BB4BF3C8D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785E5384-8848-401C-8DC0-69BB4BF3C8D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785E5384-8848-401C-8DC0-69BB4BF3C8D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,46 +1,83 @@
-﻿using BankStatCore.Contracts.Repositories;
-using BankStatCore.Models;
+﻿using AutoMapper;
+using BankStatApi.RequestModels.Operations;
+using BankStatApi.ResponseModels;
+using BankStatCore.Contracts.Repositories;
+using BankStatCore.Contracts.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BankStatApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class AccountController : ControllerBase
     {
-        private readonly IAccountRepository _accountRepository;
+        private readonly IUserService _userService;
+        private readonly IAccountService _accountService;
+        private readonly ICurrencyRepository _currencyRepository;
+        private readonly IMapper _mapper;
 
-        public AccountController(IAccountRepository accountRepository)
+        public AccountController(
+            IAccountService accountService,
+            IUserService userService,
+            ICurrencyRepository currencyRepository,
+            IMapper mapper
+        )
         {
-            _accountRepository = accountRepository;
+            _accountService = accountService;
+            _userService = userService;
+            _currencyRepository = currencyRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<AccountModel>> GetAll()
+        [Route("/account/")]
+        [Authorize]
+        public ActionResult<AccountResponce> Check(string id)
         {
-            return Ok(_accountRepository.GetAll());
+            var accountModel = _accountService.Info(id);
+            var account = _mapper.Map<AccountResponce>(accountModel);
+
+            return Ok(accountModel);
         }
 
         [HttpPost]
-        public ActionResult Create(AccountModel account)
+        [Route("/account/deposit")]
+        [Authorize]
+        public ActionResult Deposit(DepositRequest req)
         {
-            _accountRepository.Create(account);
-            return Ok();
+            _accountService.ExecuteOperation(null, req.ReceiverId, req.Amount, req.CurIso, "deposit");
+            return Ok("");
         }
 
-        [HttpPut]
-        public ActionResult Update(AccountModel account)
+        [HttpPost]
+        [Route("/account/withdraw")]
+        [Authorize]
+        public ActionResult Withdraw(WithdrawRequest req)
         {
-            _accountRepository.Update(account);
-            return Ok();
+            _accountService.ExecuteOperation(null, req.ReceiverId, req.Amount, req.CurIso, "withdraw");
+            return Ok("");
         }
 
-        [HttpDelete]
-        public ActionResult Delete(string id)
+        [HttpPost]
+        [Route("/account/transaction")]
+        [Authorize]
+        public ActionResult Transaction(TransactionRequest req)
         {
-            var deletedAccount = _accountRepository.GetById(id);
-            _accountRepository.DeleteById(id);
-            return Ok(deletedAccount);
+            _accountService.ExecuteOperation(req.SenderId, req.ReceiverId, req.Amount, req.CurIso, "transaction");
+            return Ok("");
+        }
+
+        [HttpGet]
+        [Route("/user/history")]
+        [Authorize]
+        public ActionResult<IEnumerable<OperationResponse>> OperationsHistory(string accountId)
+        {
+            var operationModels = _accountService.OperationsHistory(accountId);
+            var operations = _mapper.Map<List<OperationResponse>>(operationModels);
+
+            return Ok(operations);
         }
     }
 }
